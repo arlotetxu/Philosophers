@@ -9,20 +9,23 @@
 
 void	*my_turn()
 {
-	while (1)
+	int i = 0;
+
+	while (i < 8)
 	{
 		sleep(1);
-		printf("My turn.\n");
+		printf("My turn - %d\n", i++);
 	}
 	return (NULL);
 }
 
 void	*your_turn()
 {
-	while (1)
+	int i = 0;
+	while (i < 3)
 	{
 		sleep(2);
-		printf("Your turn.\n");
+		printf("Your turn - %d\n", i++);
 	}
 	return (NULL);
 }
@@ -31,10 +34,11 @@ int main(void)
 {
 	pthread_t	newthread;
 
-	pthread_create(&newthread, NULL, my_turn, NULL);
+	pthread_create(&newthread, NULL, my_turn, NULL); //Crea un hilo de ejecucion
 	//my_turn();
 	your_turn();
-	//sleep(12);
+	pthread_join(newthread, NULL); //Espera a que el hilo de ejecucion termine para continuar con el codigo de main
+	//sleep(5);
 	//printf("Fin\n");
 	return (0);
 }
