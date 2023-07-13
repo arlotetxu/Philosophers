@@ -33,8 +33,8 @@ int main(void)
 
 	pthread_create(&newthread, NULL, my_turn, NULL);
 	//my_turn();
-	your_turn();
-	//sleep(12);
+	//your_turn();
+	sleep(12);
 	//printf("Fin\n");
 	return (0);
 }
