@@ -38,7 +38,7 @@ int main(void)
 	//my_turn();
 	your_turn();
 	pthread_join(newthread, NULL); //Espera a que el hilo de ejecucion termine para continuar con el codigo de main
-	sleep(12);
+	//sleep(12);
 	//printf("Fin\n");
 	return (0);
 }
