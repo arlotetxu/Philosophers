@@ -7,4 +7,4 @@ include_directories(inc)
 
 add_executable(Philosophers
         inc/philo.h
-        learning/first_thread.c)
+        learning/first_thread.c learning/threads_pointer.c)

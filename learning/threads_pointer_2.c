@@ -3,11 +3,13 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-void*   MyTurn(void *arg)
+void*   MyTurn()
 {
     int i = 0;
-    int *ptr_value = arg;
+    int *ptr_value;
 
+	ptr_value = malloc(sizeof(int));
+	*ptr_value = 20;
     while (i < 12)
     {
         sleep(1);
@@ -37,11 +39,14 @@ void*   YourTurn()
 int main(void)
 {
     pthread_t   my_thread;
-    int         v = 20;
+	int 		*result;
 
-    pthread_create(&my_thread, NULL, MyTurn, &v);
+    pthread_create(&my_thread, NULL, MyTurn, NULL);
     YourTurn();
-    pthread_join(my_thread, NULL);
-    printf("thread's done: v = %d\n", v);
+	// This function (pthread_join) waits till receive something from the thread.
+	//WARNING... As the function "MyTurn" (executed) is a void*, it is needed to
+	// cast the return with a (void *) &result.
+    pthread_join(my_thread, (void *) &result);
+    printf("\x1b[33m" "thread's done: result = %d\n" "\x1b[0m", *result);
     return (0);
 }
