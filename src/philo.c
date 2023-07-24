@@ -39,6 +39,18 @@ Se permite usar libft --> OK
 No
 */
 
+/*
+ * ================ DONE ======================
+ *
+ * - Chequeos de entrada. Numero de argumentos. Valores numericos, no vacios,
+ * 		con posibilidad de signo '+' --> checks.c
+ * - Funcion para liberar strings y strings dobles (char **) --> utils.c
+ * - Funcion Atoi --> utils.c
+ *
+ * =============== PENDING ====================
+ * Crear funcion para cargar los datos
+ * Crear funcion para comprobar los datos imprimiendo sus valores
+ */
 
 #include "../inc/philo.h"
 
