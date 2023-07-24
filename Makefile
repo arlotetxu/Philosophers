@@ -6,11 +6,11 @@
 #    By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/27 11:27:45 by jflorido          #+#    #+#              #
-#    Updated: 2023/07/23 18:07:56 by jflorido         ###   ########.fr        #
+#    Updated: 2023/07/24 10:07:33 by jflorido         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = pipex
+NAME = philo
 
 #ANSI Shadow
 define HEADER
@@ -21,52 +21,57 @@ define HEADER
 ██╔═══╝ ██╔══██║██║██║     ██║   ██║╚════██║██║   ██║██╔═══╝ ██╔══██║██╔══╝  ██╔══██╗╚════██║
 ██║     ██║  ██║██║███████╗╚██████╔╝███████║╚██████╔╝██║     ██║  ██║███████╗██║  ██║███████║
 ╚═╝     ╚═╝  ╚═╝╚═╝╚══════╝ ╚═════╝ ╚══════╝ ╚═════╝ ╚═╝     ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝
-                                                                                             
 
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@///////////@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@/////////////////@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@//////////////////////////////////////////@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@/////////////////////////////////////////////@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@/////////////////////////////////////////////////@@@@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@/////////////////////////////////////////////////@@@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@/////////////////////////////////////////////////@@@@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@///////////////////////////////////////////////////@@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@@@////////@@&//////////////////////////////////////@@@@@@@@@@@@@@
-@@@@@@@@@@@@@@@////////////////////////////////////////////////////@@@@@@@@@@@@@
-@@@@@@@@@@@@@@//////////////////////////////////////////////////////@@@@@@@@@@@@
-@@@@@@@@@@@@@////////@@@@/////////////////////////////////////////////@@@@@@@@@@
-@@@@@@@@@@@@@@////////@@@@/////////////////////////////////////////////@@@@@@@@@
-@@@@@@@@@@@@@@@@/////////@//////////////////////////////////////////////@@@@@@@@
-@@@@@@@@@@@@@@@@@%///////////////////////////////////////////////////////@@@@@@@
-@@@@@@@@@@@@@@@@@@@//////////////////////@////////////////////////////////@@@@@@
-@@@@@@@@@@@@@@@@@@@@////////////////////@@@@//////////////////////////////@@@@@@
-@@@@@@@@@@@@@@@@@@@@@@//////////////////@@@@@@@@///////////////////////////@@@@@
-@@@@@@@@@@@@@@@@@///////////////////////////////////////////////////////////@@@@
-@@@@@@@@@@@@@@//////////////////////////////////////////////////////////////@@@@
-@@@@@@@@@@@@////////////////////////////////////////////////////////////////@@@@
-@@@@@@@@@@@/////////////////////////////////////////////////////////////////@@@@
-@@@@@@@@@@@////////////////////////////////////////////////////////////////@@@@@
-@@@@@@@@@@@/////@@/////////////////////////////////////////////////////////@@@@@
-@@@@@@@@@@@&/////////////////////////////@//////////////////////////////////////
-@@@@@@@@@@@@@@@////////////////////////////@@///////////////////////////////////
-@@@@@@@@@@@@@@@@@@@/////////////////////////////////////////////////////////////
-@@@@@@@@@@@@@@@@@@@@////////////////////////////////////////////////////////////
-@@@@@@@@@@@@@@@@@@@@@@@/////////////////////////////////////////////////////////
-@@@@@@@@@@@@@@@@@@@@@@@@@///////////////////////////////////////////////////////
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@////////////////////////////////////////////////////
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@/////////////////////////////////////////////////
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@//////////////////////////////////////////////
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@///////////////////////////////////////////
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%////////////////////////////////////////
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@///////////////////////////////////////
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@//////////////////////////////////////
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@///////////////////////////////////////
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@//////////////////////////////////////////
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@/////////////////////////////////////////
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@//////////////////////////////////////////
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@//////////////////////////////////////////
+	
+@@@@@@@@@@@@&BP5YYY5G#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@B5J???JJJ??J5B&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@5??JJJJJJJJJJ??JY5PB#&@@@@@@&&&#BGBB&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@P?JJJJJJJJJJJJJJJ????JJYY55YYJJJJ????JYG&@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@B?JJJJJJJJJJJJJJJJJJJJJJJ????JJJJJJJJJJ??J5G#@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@G??JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ??J5#@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@BGJ?JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ?J5B@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@#GJ?JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ??YG&@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@BJ?JJJJJJJJ?JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ??JG@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@&BYJJJJJJYB@#YJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ?Y#@@@@@@@@@@@@@
+@@@@@@@@@@@@@@PJJJJJJJ5#BJ?JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ?J#@@@@@@@@@@@@
+@@@@@@@@@@@@&Y?JJJJJ?????JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ?J&@@@@@@@@@@@
+@@@@@@@@@@@@5?JJJJJY5PBY?JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ?Y&@@@@@@@@@@
+@@@@@@@@@@@&J?JJJJJ&@@@B?JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ?JB@@@@@@@@@
+@@@@@@@@@@@@#5?JJJJYG&@@5?JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ?JG@@@@@@@@
+@@@@@@@@@@@@@@BJ?JJJ?JP&G?JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ?B@@@@@@@
+@@@@@@@@@@@@@@@#Y?JJJJ?JYJJJJJJJJJJJJJ?JJJJJJJJJJJJJJJJJJJJJJJJJJJ?J&@@@@@@
+@@@@@@@@@@@@@@@@#J?JJJJJJJJJJJJJJJJJJJGJ?JJJJJJJJJJJJJJJJJJJJJJJJJJ?P@@@@@@
+@@@@@@@@@@@@@@@@@&Y?JJJJJJJJJJJJJJJJ?G@&PYJ??JJJJJJJJJJJJJJJJJJJJJJJJ&@@@@@
+@@@@@@@@@@@@@@@@@@@PJJJJJJJJJJJJJJJJJ&@@@&#PYJJJJJJJJJJJJJJJJJJJJJJJ?5@@@@@
+@@@@@@@@@@@@@@@@#G5YJJJJJJJJJJJJJJJJJYYYYYY55YJJJJJJJJJJJJJJJJJJJJJJJ?G@@@@
+@@@@@@@@@@@@@#PYJ??JJJJJJJJJJJJJJJJJJJJJJ????JJJJJJJJJJJJJJJJJJJJJJJJ?5@@@@
+@@@@@@@@@@@&5J?JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ?Y@@@@
+@@@@@@@@@@&Y?JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ?P@@@@
+@@@@@@@@@@5?JJJJ?JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ?B@@@@
+@@@@@@@@@G?JJJ?JPJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJY@@@@@
+@@@@@@@@@G?JJ?5#GJJJJJJJJJJJJJJJJJJJJJ????JJJJJJJJJJJJJJJJJJJJJJJJJJ?5&&&&&
+@@@@@@@@@@P???5Y?JJJJJJJJJJJJJJJJJJJJJ5P5YJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+@@@@@@@@@@@BP5YJJJJJJJJJJJJJJJJJJJJJJJJG@BJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+@@@@@@@@@@@@@@@@BJ?JJJJJJJJJJJJJJJJJJJJ?5GJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+@@@@@@@@@@@@@@@@@#Y??JJJJJJJJJJJJJJJJJJJ?JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+@@@@@@@@@@@@@@@@@@@G5J?JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+@@@@@@@@@@@@@@@@@@@@@&5??JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+@@@@@@@@@@@@@@@@@@@@@@@B5J?JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+@@@@@@@@@@@@@@@@@@@@@@@@@#PJ??JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+@@@@@@@@@@@@@@@@@@@@@@@@@@@&B5J??JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&B5J?JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&PJ?JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&PJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@BJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@G?JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@B?JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&#5JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@5J?JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@PJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@Y?JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@GJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
 
+                                                                   
 endef
 export HEADER
 
@@ -79,7 +84,7 @@ OBJF = obj
 INC = inc
 
 # Files
-SRC_FILES = pipex path_utils pipex_utils
+SRC_FILES = philo utils checks
 #SRCS = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
@@ -108,9 +113,7 @@ all: $(NAME)
 
 # Compiling all
 $(NAME): $(OBJS)
-	#@$(MAKE) -C ./libft
-	#@$(CC) $(CFLAGS) $(OBJS) -I $(INC) $(LIBFT_a) -o $(NAME)
-    @$(CC) $(CFLAGS) $(OBJS) -I $(INC) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) -I $(INC) -o $(NAME)
 	@echo "$(GREEN)$$HEADER$(DEF_COLOR)"
 	@echo "$(GREEN)Philosophers compiled!$(DEF_COLOR)"
 
@@ -126,19 +129,17 @@ $(OBJF):
 # Cleanning files
 clean:
 	$(RM) $(OBJS)
-	@make clean -C ./libft
 	@echo "$(YELLOW)&(OBJS) --> Files removed.$(DEF_COLOR)"
 
 #Cleanning files and executable
 fclean: clean
 	$(RM) $(NAME)
-	@MAKE fclean -C ./libft
 	@echo "$(RED)$(NAME) Executable files removed!$(DEF_COLOR)"
 
 re: fclean all
 
 normi:
-	@norminette $(SRC_DIR) $(INC) $(LIBFT_DIR)
+	@norminette $(SRC_DIR) $(INC)
 
 sani: fclean
 	$(MAKE) CFLAGS='$(CFLAGS) $(SANI)' all
