@@ -52,5 +52,5 @@ Mkfile.old
 dkms.conf
 
 # CLion log files
-*.lo
-*.ninjag
+*.log
+*.ninja
