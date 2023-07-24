@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 18:13:22 by jflorido          #+#    #+#             */
-/*   Updated: 2023/07/24 09:28:34 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/07/24 13:30:21 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,9 @@ long long	ft_atoi_phi(char *nb)
 	while ((nb[i] != '\0' && nb[i] >= 9 && nb[i] <= 13) || nb[i] == 32)
 		i++;
 	if (nb[i] == '-')
-		sign = -1;
-	while (nb[i] != '\0' && (nb[i] == '+' || nb[i] == '-'))
+		return (ft_error_msg("Error.\nValue < 0\n"), 1);
+		//sign = -1;
+	while (nb[i] != '\0' && nb[i] == '+')
 		i++;
 	while (nb[i] != '\0' && nb[i] >= '0' && nb[i] <= '9')
 	{

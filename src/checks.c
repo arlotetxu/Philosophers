@@ -30,7 +30,7 @@ int ft_arg_is_nb(char **argv)
         j = 0;
         while (argv[i][j])
         {
-            if (argv[i][j] != '+' && (argv[i][j] < '0' || argv[i][j] > '9' || argv[i][0] == '\0'))
+            if (argv[i][j] != '+' && (argv[i][j] < '0' || argv[i][j] > '9'))
                 return (ft_error_msg("Error.\nArg is not a number or is < 0.\n"), 1);
             j++;
         }
