@@ -52,11 +52,11 @@ void	ft_free(char *str, char **str_2)
 * 3
 * ATOI
 */
-long long	ft_atoi_phi(char *nb)
+long	ft_atoi_phi(char *nb)
 {
 	int			i;
 	int			sign;
-	long long 	result;
+	long 	result;
 
 	i = 0;
 	sign = 1;

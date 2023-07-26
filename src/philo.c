@@ -48,7 +48,13 @@ No
  * - Funcion Atoi --> utils.c
  *
  * =============== PENDING ====================
- * Crear funcion para cargar los datos
+ * Chequear que los valores introducidos no exceden los limites del tipo de variable
+ * Crear funcion para obtener el valor de tiempo actual
+ * Crear funcion para cargar los datos generales
+ * 		- cargar tiempo en st_time
+ * 		- cargar argumentos correspondientes
+ * 		- Crear los mutex a los tenedores en m_forks
+ * Crear funcion para inicializar cada filosofo?????????????
  * Crear funcion para comprobar los datos imprimiendo sus valores
  */
 

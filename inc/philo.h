@@ -20,26 +20,33 @@
 #include <pthread.h>
 
 //STRUCTS
-typedef struct s_data{
-	int 		tot_philos;
-	long long	t_t_die;
-	long long	t_t_eat;
-	long long	t_t_sleep;
-	int 		must_eat; //numero de veces que tiene que comer
-	
-}	t_data;
 
 typedef struct s_philo{
 	int		philo_id;
-	t_data	*philo_data;
+	struct	s_general	*general;
 } 	t_philo;
+
+typedef struct s_general{
+	int 			tot_philos;
+	long			t_t_die;
+	long			t_t_eat;
+	long			t_t_sleep;
+	long 			st_time;
+	int 			number_meals; //numero de veces que tiene que comer
+	int 			is_dead;
+	pthread_t		*thread;
+	pthread_mutex_t *m_forks;
+	t_philo			*philo;
+}	t_general;
+
+
 
 //Including functions
 
 //UTILS
 void		ft_error_msg(char *msg);
 void		ft_free(char *str, char **str_2);
-long long	ft_atoi_phi(char *nb);
+long	ft_atoi_phi(char *nb);
 
 //CHECKS
 int         ft_arg_is_nb(char **argv);
