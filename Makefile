@@ -6,7 +6,7 @@
 #    By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/27 11:27:45 by jflorido          #+#    #+#              #
-#    Updated: 2023/07/24 10:07:33 by jflorido         ###   ########.fr        #
+#    Updated: 2023/07/28 16:58:23 by jflorido         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,7 +84,7 @@ OBJF = obj
 INC = inc
 
 # Files
-SRC_FILES = philo utils checks
+SRC_FILES = philo utils checks philo_utils
 #SRCS = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 

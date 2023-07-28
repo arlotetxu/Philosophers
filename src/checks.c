@@ -14,6 +14,24 @@
 #include "../inc/philo.h"
 
 /*
+* Comprobar que los argumentos no exceden los limites de INT
+*/
+int ft_arg_in_int(char **argv)
+{
+    int i;
+
+    i = 0;
+    while (argv[++i])
+        if (ft_atoi_phi(argv[i]) > max_int || ft_atoi_phi(argv[i]) < min_int)
+        {
+            printf("\x1b[31m""Error.\nArg[%d] out of the INT limits!\n",i);
+            return (1);
+        }
+    return (0);
+}
+
+
+/*
 * Comprobar que tengo argumentos no nulos y son numericos
 */
 
@@ -25,13 +43,15 @@ int ft_arg_is_nb(char **argv)
     i = 1;
     while (argv[i])
     {
+        if (ft_atoi_phi(argv[i]) <= 0)
+            return (ft_error_msg("Error.\nArg <= 0\n"), 1);
         if (argv[i][0] == '\0')
             return (ft_error_msg("Error.\nEmpty argument.\n"), 1);
         j = 0;
         while (argv[i][j])
         {
             if (argv[i][j] != '+' && (argv[i][j] < '0' || argv[i][j] > '9'))
-                return (ft_error_msg("Error.\nArg is not a number or is < 0.\n"), 1);
+                return (ft_error_msg("Error.\nArg is not a number.\n"), 1);
             j++;
         }
         i++;

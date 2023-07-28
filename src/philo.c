@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 17:47:14 by jflorido          #+#    #+#             */
-/*   Updated: 2023/07/24 10:22:01 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/07/28 17:37:56 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,13 @@ No
 #include "../inc/philo.h"
 
 int	main(int argc, char **argv)
-{
+{   
 	if (argc == 5 || argc == 6)
     {
-        if (ft_arg_is_nb(argv) == 0)
-            printf("Todo Correcto!!\n");
+        if (ft_arg_is_nb(argv) == 0 && ft_arg_in_int(argv) == 0)
+            ft_initial_data_load(argc, argv);
+            //printf("Todo Correcto. Continua ejecucion!!\n");
     }
-    else    
+    else
 	    return (ft_error_msg("Error.\nInvalid number of args\n"), 0);
 }

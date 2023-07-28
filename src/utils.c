@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 18:13:22 by jflorido          #+#    #+#             */
-/*   Updated: 2023/07/24 13:30:21 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/07/28 16:32:36 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,15 @@
 */
 void	ft_error_msg(char *msg)
 {
-    int	i;
+    // int	i;
 
-	i = 0;
-	while (msg[i])
-		i++;
-    write(0,"\x1b[31m", 6);
-    write(1, msg, i);
-	write(0, "\x1b[0m", 5);
+	// i = 0;
+	// while (msg[i])
+	// 	i++;
+    // write(0,"\x1b[31m", 6);
+    // write(1, msg, i);
+	// write(0, "\x1b[0m", 5);
+    printf("\x1b[31m" "%s" "\x1b[0m", msg);
 }
 
 /*
@@ -64,8 +65,8 @@ long	ft_atoi_phi(char *nb)
 	while ((nb[i] != '\0' && nb[i] >= 9 && nb[i] <= 13) || nb[i] == 32)
 		i++;
 	if (nb[i] == '-')
-		return (ft_error_msg("Error.\nValue < 0\n"), 1);
-		//sign = -1;
+	// 	return (ft_error_msg("Error.\nValue < 0\n"), 1);
+		sign = -1;
 	while (nb[i] != '\0' && nb[i] == '+')
 		i++;
 	while (nb[i] != '\0' && nb[i] >= '0' && nb[i] <= '9')
