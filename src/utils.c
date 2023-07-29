@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 18:13:22 by jflorido          #+#    #+#             */
-/*   Updated: 2023/07/28 16:32:36 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/07/29 12:37:51 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ long	ft_atoi_phi(char *nb)
 {
 	int			i;
 	int			sign;
-	long 	result;
+	long 		result;
 
 	i = 0;
 	sign = 1;
@@ -75,4 +75,24 @@ long	ft_atoi_phi(char *nb)
 		i++;
 	}
 	return (result * sign);
+}
+
+/*
+* 4
+* Obtener la fecha
+*/
+
+long	ft_get_time()
+{
+	long			get_time;
+	struct	timeval	tv;
+
+	if (gettimeofday(&tv, NULL) == 0)
+	{
+		// printf("Segundos: %ld\n", tv.tv_sec);
+		// printf("Microsegundos: %ld\n", tv.tv_usec);
+		get_time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
+		// printf("Tiempo en milisec: %ld\n", get_time);
+	}
+	return (get_time);
 }
