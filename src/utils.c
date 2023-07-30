@@ -87,6 +87,7 @@ long	ft_get_time()
 	long			get_time;
 	struct	timeval	tv;
 
+	get_time = 0;
 	if (gettimeofday(&tv, NULL) == 0)
 	{
 		// printf("Segundos: %ld\n", tv.tv_sec);

@@ -54,3 +54,4 @@ dkms.conf
 # CLion log files
 *.log
 *.ninja
+cmake-build-debug/*
