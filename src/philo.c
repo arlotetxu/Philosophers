@@ -71,6 +71,7 @@ int	main(int argc, char **argv)
         if (ft_arg_is_nb(argv) == 0 && ft_arg_in_int(argv) == 0)
             //ft_initial_data_load(argc, argv);
 			ft_get_time();
+		ft_initial_data_load(argc, argv);
             //printf("Todo Correcto. Continua ejecucion!!\n");
     }
     else

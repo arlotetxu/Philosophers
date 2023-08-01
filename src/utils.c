@@ -93,7 +93,9 @@ long	ft_get_time()
 		// printf("Segundos: %ld\n", tv.tv_sec);
 		// printf("Microsegundos: %ld\n", tv.tv_usec);
 		get_time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
-		// printf("Tiempo en milisec: %ld\n", get_time);
+		printf("Tiempo en milisec: %ld\n", get_time);
 	}
 	return (get_time);
 }
+
+

@@ -19,18 +19,21 @@ int	ft_init_philo(t_general *gen_data)
 {
 	int	i;
 
-	i = 0;
+	i = -1;
 	gen_data->philo = malloc(sizeof(t_philo) * gen_data->tot_philos);
 	if (!gen_data->philo)
 		return (1);
-	while (++i <= gen_data->tot_philos)
+	while (++i < gen_data->tot_philos)
 	{
 		gen_data->philo[i].philo_id = i;
 		gen_data->philo[i].t_t_die = gen_data->t_t_die;
 		gen_data->philo[i].t_t_eat = gen_data->t_t_eat;
 		gen_data->philo[i].t_t_sleep = gen_data->t_t_sleep;
 		gen_data->philo[i].l_fork = &gen_data->m_forks[i];
+		gen_data->philo[i].r_fork = &gen_data->m_forks[(i + 1) % gen_data->tot_philos];
+		gen_data->philo[i].nb_meals = 0;
 		//continuar con datos
+		printf("Filosofo [%d] iniciados.\n", i);
 	}
 	return (0);
 }
@@ -46,12 +49,13 @@ int	ft_init_mutex(t_general *gen_data)
 	gen_data->m_forks = malloc(sizeof(pthread_mutex_t) * gen_data->tot_philos); //TODO Liberar
 	if (!gen_data->m_forks)
 		return (1);
-	i = 0;
-	while (++i <= gen_data->tot_philos)
+	i = -1;
+	while (++i < gen_data->tot_philos)
 		pthread_mutex_init(&gen_data->m_forks[i], NULL);
 	pthread_mutex_init(&gen_data->m_check_dead, NULL);
-	// printf("Mutex creados!!\n");
+	 printf("Mutex creados!!\n");
 	//Llamar a Inicializar filosofos
+	ft_init_philo(gen_data);
 	return (0);
 }
 
@@ -74,8 +78,8 @@ int ft_initial_data_load(int argc, char **argv)
     else
         gen_data->number_meals = 0; //TODO comprobar si 0 es correcto y no interfiere con la logica del programa
     gen_data->is_dead = 0;
-    // printf("Total philos: %d\n", gen_data->tot_philos);
-    // printf("Tiempo de muerte: %d\n", gen_data->t_t_die);
+     printf("Total philos: %d\n", gen_data->tot_philos);
+     printf("Tiempo de muerte: %d\n", gen_data->t_t_die);
     //Crear los mutex
 	if (ft_init_mutex(gen_data) == 1)
 		return (1);

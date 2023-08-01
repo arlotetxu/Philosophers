@@ -29,29 +29,30 @@
 
 typedef struct s_philo
 {
-	int		            philo_id;
-    int			        t_t_die;
-	int			        t_t_eat;
-	int			        t_t_sleep;
+	int					philo_id;
+    int					t_t_die;
+	int					t_t_eat;
+	int					t_t_sleep;
 	pthread_mutex_t		*l_fork;
 	pthread_mutex_t		*r_fork;
-	struct	s_general	*general;
-} 	                    t_philo;
+	int 				nb_meals;
+	//struct	s_general	*general;
+}						t_philo;
 
 typedef struct s_general
 {
 	int 			tot_philos;
-	int			    t_t_die;
-	int			    t_t_eat;
-	int			    t_t_sleep;
-	int             st_time;
+	int				t_t_die;
+	int				t_t_eat;
+	int				t_t_sleep;
+	int				st_time;
 	int 			number_meals; //numero de veces que tiene que comer
 	int 			is_dead;
 	pthread_t		*thread;
-    pthread_mutex_t m_check_dead;
-	pthread_mutex_t *m_forks;
+    pthread_mutex_t	m_check_dead;
+	pthread_mutex_t	*m_forks;
 	t_philo			*philo;
-}	                t_general;
+}					t_general;
 
 
 
