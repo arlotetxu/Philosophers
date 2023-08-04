@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:23:18 by jflorido          #+#    #+#             */
-/*   Updated: 2023/07/29 13:32:22 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/08/04 14:29:27 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_philo
 	pthread_mutex_t		*l_fork;
 	pthread_mutex_t		*r_fork;
 	int 				nb_meals;
+	int					st_time;
 	//struct	s_general	*general;
 }						t_philo;
 
@@ -62,15 +63,18 @@ typedef struct s_general
 void		ft_error_msg(char *msg);
 void		ft_free(char *str, char **str_2);
 long		ft_atoi_phi(char *nb);
-long		ft_get_time();
+int			ft_get_time();
+void		ft_sleep(int m_sec);
 
 //CHECKS
 int			ft_arg_is_nb(char **argv);
 int			ft_arg_in_int(char **argv);
 
-//PHILO_UTILS
+//INITS
 int			ft_initial_data_load(int argc, char **argv);
 int			ft_init_mutex(t_general *general);
 int			ft_init_philo(t_general *gen_data);
+
+//PHILO_UTILS
 
 #endif //PHILO_H

@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 18:13:22 by jflorido          #+#    #+#             */
-/*   Updated: 2023/07/29 12:37:51 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/08/04 14:19:47 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,9 @@ long	ft_atoi_phi(char *nb)
 * Obtener la fecha
 */
 
-long	ft_get_time()
+int	ft_get_time()
 {
-	long			get_time;
+	int			get_time;
 	struct	timeval	tv;
 
 	get_time = 0;
@@ -93,9 +93,21 @@ long	ft_get_time()
 		// printf("Segundos: %ld\n", tv.tv_sec);
 		// printf("Microsegundos: %ld\n", tv.tv_usec);
 		get_time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
-		printf("Tiempo en milisec: %ld\n", get_time);
+		printf("Tiempo en milisec: %d\n", get_time);
 	}
 	return (get_time);
 }
 
+/*
+5
+* Funcion sleep para mantenerse haciendo una accion
+*/
 
+void	ft_sleep(int m_sec)
+{
+	int	time;
+
+	time = ft_get_time();
+	while((ft_get_time() - time) < m_sec)
+		usleep(100);
+}

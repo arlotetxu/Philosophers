@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 17:47:14 by jflorido          #+#    #+#             */
-/*   Updated: 2023/07/29 13:24:45 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/08/04 13:47:03 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,24 @@ No
  * - Creada funcion para obtener el tiempo actual
  * 		ft_get_time --> utils.c
  * - Creada funcion para la carga de datos en la estructura general
- * 		ft_initial_data_load --> philo_utils.c
+ * 		ft_initial_data_load --> inits.c
  * - Creada funcion para realizar los mutex a los tenedores
- * 		ft_init_mutex --> philo_utils.c
+ * 		ft_init_mutex --> inits.c
+ * - Creada funcion para inicializar a cada filosofo
+ * 		ft_init_philo --> inits.c
+ * - Creada funcion para esperar el tiempo necesario para realizar las operaciones
+ * 		ft_sleep --> philo_utils.c (PASAR A UTILS???)
  *
  * =============== PENDING ====================
- * Crear funcion para inicializar cada filosofo
- * 		ft_init_philo --> philo_utils.c
- * 		Pendiente inicializar los mutex de cada tenedor de cada filosofo
- * Crear funcion para comprobar los datos imprimiendo sus valores
+ * - Crear rutina
+ * 		- 1/ Funcion comer. Reserva de tenedores. Logica para reservar (pares / impares).
+ * 		- 2/ Funcion para dormir. En combinacion con ft_sleep.
+ * 		- 3/ Funcion para pensar. Solo mensaje??? No hay tiempo definido.
+ * 		- Comprobacion de si filosofo esta muerto?? Hilo independiente
+ * - Crear funcion para lanzar los hilos de los philos
+ * 		- Pasar como argumento la funcion que tiene que realizar. Rutina.
+ *
+ * - Crear philosofo adicional para comprobar si alguno ha muerto???
  */
 
 #include "../inc/philo.h"
@@ -72,6 +81,9 @@ int	main(int argc, char **argv)
             //ft_initial_data_load(argc, argv);
 			ft_get_time();
 		ft_initial_data_load(argc, argv);
+		printf("Inicio sleep\n");
+		//ft_sleep(5000);
+		printf("Fin sleep\n");
             //printf("Todo Correcto. Continua ejecucion!!\n");
     }
     else

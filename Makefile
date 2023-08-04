@@ -6,7 +6,7 @@
 #    By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/27 11:27:45 by jflorido          #+#    #+#              #
-#    Updated: 2023/07/28 16:58:23 by jflorido         ###   ########.fr        #
+#    Updated: 2023/08/04 15:02:48 by jflorido         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ define HEADER
 ██║     ██║  ██║██║███████╗╚██████╔╝███████║╚██████╔╝██║     ██║  ██║███████╗██║  ██║███████║
 ╚═╝     ╚═╝  ╚═╝╚═╝╚══════╝ ╚═════╝ ╚══════╝ ╚═════╝ ╚═╝     ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝
 
-	
+
 @@@@@@@@@@@@&BP5YYY5G#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @@@@@@@@@@B5J???JJJ??J5B&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @@@@@@@@@5??JJJJJJJJJJ??JY5PB#&@@@@@@&&&#BGBB&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -71,7 +71,7 @@ define HEADER
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@Y?JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@GJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
 
-                                                                   
+
 endef
 export HEADER
 
@@ -84,14 +84,14 @@ OBJF = obj
 INC = inc
 
 # Files
-SRC_FILES = philo utils checks philo_utils
+SRC_FILES = philo utils checks inits philo_utils
 #SRCS = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
 #Commands
 CC 			= 	gcc
 SANI 		= 	-g3 -fsanitize=address
-CFLAGS 		= 	-Wall -Wextra -Werror
+CFLAGS 		= 	-g -Wall -Wextra -Werror -pthread
 RM 			= 	rm -rf
 
 #LIBFT_a 	= 	libft/libft.a
