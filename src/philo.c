@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 17:47:14 by jflorido          #+#    #+#             */
-/*   Updated: 2023/08/04 13:47:03 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/08/07 17:25:04 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,9 @@ No
  * - Creada funcion para inicializar a cada filosofo
  * 		ft_init_philo --> inits.c
  * - Creada funcion para esperar el tiempo necesario para realizar las operaciones
- * 		ft_sleep --> philo_utils.c (PASAR A UTILS???)
+ * 		ft_sleep --> utils.c
+ * -Creada funcion que crea filosofo vigilante
+ * 		ft_philo_watcher --> watcher.c
  *
  * =============== PENDING ====================
  * - Crear rutina
@@ -68,24 +70,43 @@ No
  * - Crear funcion para lanzar los hilos de los philos
  * 		- Pasar como argumento la funcion que tiene que realizar. Rutina.
  *
- * - Crear philosofo adicional para comprobar si alguno ha muerto???
+ *
  */
 
 #include "../inc/philo.h"
 
 int	main(int argc, char **argv)
 {
+	t_general	*gen_data;
+
+    gen_data = malloc(sizeof(t_general)); //TODO Liberar
+    if (!gen_data)
+		return (1);
 	if (argc == 5 || argc == 6)
     {
-        if (ft_arg_is_nb(argv) == 0 && ft_arg_in_int(argv) == 0)
-            //ft_initial_data_load(argc, argv);
+        if (ft_arg_is_nb(argv) == 0 && ft_arg_in_int(argv) == 0 && ft_initial_data_load(gen_data, argc, argv) == 0)
+		{
 			ft_get_time();
-		ft_initial_data_load(argc, argv);
-		printf("Inicio sleep\n");
+			//Meter los free() de los mallocs hechos en esta funcion en las funciones del archivo inits.c
+			return (0);
+		}
+            //ft_initial_data_load(argc, argv);
+		else
+		{
+			free(gen_data);
+			return (1);
+		}
+
+		//ft_initial_data_load(argc, argv);
+		//printf("Inicio sleep\n");
 		//ft_sleep(5000);
-		printf("Fin sleep\n");
-            //printf("Todo Correcto. Continua ejecucion!!\n");
+		//printf("Fin sleep\n");
+		//printf("Todo Correcto. Continua ejecucion!!\n");
+
     }
     else
-	    return (ft_error_msg("Error.\nInvalid number of args\n"), 0);
+	{
+		free(gen_data);
+		return (ft_error_msg("Error.\nInvalid number of args\n"), 0);
+	}
 }

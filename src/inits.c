@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 18:26:26 by jflorido          #+#    #+#             */
-/*   Updated: 2023/08/04 13:33:24 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/08/07 17:49:36 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ int	ft_init_philo(t_general *gen_data)
 	i = -1;
 	gen_data->philo = malloc(sizeof(t_philo) * gen_data->tot_philos);
 	if (!gen_data->philo)
+	{
+		ft_error_msg("Error allocating memomry for philos!.\n");
 		return (1);
+	}
 	while (++i < gen_data->tot_philos)
 	{
 		gen_data->philo[i].philo_id = i + 1;
@@ -39,6 +42,12 @@ int	ft_init_philo(t_general *gen_data)
 	// printf("Datos philo 0 --> t_t_die: %d\n", gen_data->philo[0].t_t_die);
 	// printf("Datos philo 0 --> t_t_sleep: %d\n", gen_data->philo[0].t_t_sleep);
 	// printf("Datos philo 0 --> nb_meals: %d\n", gen_data->philo[0].nb_meals);
+	if(ft_philo_watcher(gen_data))
+	{
+		free(gen_data->philo);
+		return (1);
+	}
+
 	return (0);
 }
 
@@ -52,27 +61,34 @@ int	ft_init_mutex(t_general *gen_data)
 
 	gen_data->m_forks = malloc(sizeof(pthread_mutex_t) * gen_data->tot_philos); //TODO Liberar
 	if (!gen_data->m_forks)
+	{
+		ft_error_msg("Error allocating memory to m_forks!.\n");
 		return (1);
+	}
 	i = -1;
 	while (++i < gen_data->tot_philos)
 		pthread_mutex_init(&gen_data->m_forks[i], NULL);
 	pthread_mutex_init(&gen_data->m_check_dead, NULL);
 	 printf("Mutex creados!!\n");
 	//Llamar a Inicializar filosofos
-	ft_init_philo(gen_data);
+	if (ft_init_philo(gen_data) == 1)
+	{
+		free(gen_data->m_forks);
+		return (1);
+	}
 	return (0);
 }
 
 /*
 * Carga de datos inicial
 */
-int ft_initial_data_load(int argc, char **argv)
+int ft_initial_data_load(t_general *gen_data, int argc, char **argv)
 {
-    t_general	*gen_data;
+    // t_general	*gen_data;
 
-    gen_data = malloc(sizeof(t_general)); //TODO Liberar
-    if (!gen_data)
-        return (1);
+    // gen_data = malloc(sizeof(t_general)); //TODO Liberar
+    // if (!gen_data)
+    //     return (1);
     gen_data->tot_philos = ft_atoi_phi(argv[1]);
     gen_data->t_t_die = ft_atoi_phi(argv[2]);
     gen_data->t_t_eat = ft_atoi_phi(argv[3]);
@@ -86,6 +102,9 @@ int ft_initial_data_load(int argc, char **argv)
      printf("Tiempo de muerte: %d\n", gen_data->t_t_die);
     //Crear los mutex
 	if (ft_init_mutex(gen_data) == 1)
+	{
+		//free(gen_data);
 		return (1);
+	}
     return (0);
 }

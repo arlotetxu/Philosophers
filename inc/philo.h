@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:23:18 by jflorido          #+#    #+#             */
-/*   Updated: 2023/08/04 14:29:27 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/08/07 17:25:32 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_philo
 	pthread_mutex_t		*r_fork;
 	int 				nb_meals;
 	int					st_time;
-	//struct	s_general	*general;
+	struct	s_general	*general;
 }						t_philo;
 
 typedef struct s_general
@@ -71,10 +71,12 @@ int			ft_arg_is_nb(char **argv);
 int			ft_arg_in_int(char **argv);
 
 //INITS
-int			ft_initial_data_load(int argc, char **argv);
+int			ft_initial_data_load(t_general *gen_data, int argc, char **argv);
 int			ft_init_mutex(t_general *general);
 int			ft_init_philo(t_general *gen_data);
 
 //PHILO_UTILS
+void*			ft_philo_dead(void *arg);
+int				ft_philo_watcher(t_general *gen_data);
 
 #endif //PHILO_H
