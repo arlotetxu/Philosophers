@@ -75,7 +75,7 @@ int			ft_initial_data_load(t_general *gen_data, int argc, char **argv);
 int			ft_init_mutex(t_general *general);
 int			ft_init_philo(t_general *gen_data);
 
-//PHILO_UTILS
+//WATCHER
 void*			ft_philo_dead(void *arg);
 int				ft_philo_watcher(t_general *gen_data);
 

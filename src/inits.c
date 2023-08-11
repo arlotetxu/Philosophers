@@ -38,16 +38,15 @@ int	ft_init_philo(t_general *gen_data)
 		//continuar con datos
 		printf("Filosofo [%d] iniciados.\n", gen_data->philo[i].philo_id);
 	}
-	// printf("Datos philo 0 --> id: %d\n", gen_data->philo[0].philo_id);
-	// printf("Datos philo 0 --> t_t_die: %d\n", gen_data->philo[0].t_t_die);
-	// printf("Datos philo 0 --> t_t_sleep: %d\n", gen_data->philo[0].t_t_sleep);
-	// printf("Datos philo 0 --> nb_meals: %d\n", gen_data->philo[0].nb_meals);
+//	 printf("Datos philo 0 --> id: %d\n", gen_data->philo[0].philo_id);
+//	 printf("Datos philo 0 --> t_t_die: %d\n", gen_data->philo[0].t_t_die);
+//	 printf("Datos philo 0 --> t_t_sleep: %d\n", gen_data->philo[0].t_t_sleep);
+//	 printf("Datos philo 0 --> nb_meals: %d\n", gen_data->philo[0].nb_meals);
 	if(ft_philo_watcher(gen_data))
 	{
 		free(gen_data->philo);
 		return (1);
 	}
-
 	return (0);
 }
 
@@ -98,8 +97,10 @@ int ft_initial_data_load(t_general *gen_data, int argc, char **argv)
     else
         gen_data->number_meals = 0; //TODO comprobar si 0 es correcto y no interfiere con la logica del programa
     gen_data->is_dead = 0;
-     printf("Total philos: %d\n", gen_data->tot_philos);
-     printf("Tiempo de muerte: %d\n", gen_data->t_t_die);
+//	sleep(2);
+//	gen_data->is_dead = 1;
+//     printf("Total philos: %d\n", gen_data->tot_philos);
+//     printf("Tiempo de muerte: %d\n", gen_data->t_t_die);
     //Crear los mutex
 	if (ft_init_mutex(gen_data) == 1)
 	{

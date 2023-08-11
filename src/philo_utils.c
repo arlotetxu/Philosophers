@@ -12,25 +12,22 @@
 
 #include "../inc/philo.h"
 
-/*
-* Comprueba si el el philo no ha comido y muere. Hay que ir actualizando el t_t_die
-* Cada vez que come. Esto sera:
-* t_t_die = ft_get_time() - st_time + t_t_die
-* Esta sera la funcion que tiene que estar comprobando el philo_checker
-*/
-void*	ft_philo_dead(void *arg)
+int	ft_take_fork(t_philo *philo)
 {
-	int			i;
-	t_general	*gen_data;
-
-	gen_data = (t_general*)arg;
-	i = -1;
-	while (++i < gen_data->tot_philos)
-		if((ft_get_time() - gen_data->st_time) > gen_data->philo[i].t_t_die)
-		{
-			gen_data->is_dead = 1;
-			return ((void *)gen_data);
-		}
-	return ((void *)gen_data);
+		if (philo->philo_id % 2 == 0)
+			if (pthread_mutex_lock(philo->r_fork) != 0)
+				return (pthread_mutex_unlock(philo->r_fork), 1);
+		else
+			if (pthread_mutex_lock(philo->l_fork) != 0)
+				return (pthread_mutex_unlock(philo->l_fork), 1);
+		printf("%d has taken a fork.\n", philo->philo_id);
+		if (philo->philo_id % 2 == 0)
+			if (pthread_mutex_lock(philo->l_fork) != 0)
+				return (pthread_mutex_unlock(philo->l_fork), 1);
+		else
+			if (pthread_mutex_lock(philo->r_fork) != 0)
+				return (pthread_mutex_unlock(philo->r_fork), 1);
+		printf("%d has taken a fork.\n", philo->philo_id);
+	return (0);
 }
 
