@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 18:13:22 by jflorido          #+#    #+#             */
-/*   Updated: 2023/08/04 14:19:47 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/08/16 20:10:17 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,12 @@ void	ft_error_msg(char *msg)
 * 2
 * Function to frees all string and **strings
 */
-void	ft_free(char *str, char **str_2)
+void	ft_print_msg(t_philo *philo, char *msg)
 {
-	int	i;
-
-	i = 0;
-	if (str == NULL)
-	{
-		while (str_2[i])
-			free(str_2[i++]);
-		free(str_2[i]);
-		free(str_2);
-	}
-	else
-		free(str);
+	pthread_mutex_lock(&philo->general->gen_mutex);
+	printf("%d %d %s", ft_get_time() - philo->general->st_time,
+			philo->philo_id, msg);
+	pthread_mutex_unlock(&philo->general->gen_mutex);
 }
 
 /*

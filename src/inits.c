@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 18:26:26 by jflorido          #+#    #+#             */
-/*   Updated: 2023/08/07 17:49:36 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/08/16 19:55:09 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ int	ft_init_mutex(t_general *gen_data)
 	i = -1;
 	while (++i < gen_data->tot_philos)
 		pthread_mutex_init(&gen_data->m_forks[i], NULL);
-	pthread_mutex_init(&gen_data->m_check_dead, NULL);
+	//pthread_mutex_init(&gen_data->m_check_dead, NULL);
+	pthread_mutex_init(&gen_data->gen_mutex, NULL);
 	 printf("Mutex creados!!\n");
 	//Llamar a Inicializar filosofos
 	if (ft_init_philo(gen_data) == 1)

@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 09:59:29 by jflorido          #+#    #+#             */
-/*   Updated: 2023/08/07 17:50:09 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/08/16 18:27:42 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,11 @@ int	ft_philo_watcher(t_general *gen_data)
 		// }
 		if (gen_data->is_dead == 1)
 		{
-			printf("Philo MUERTO!!\n");
-			//TODO Funcion declarada como INT es correcto? Void?
+			//printf("Philo MUERTO!!\n");
+			ft_print_msg(gen_data->philo, "died");
 			//TODO LLamar a funcion para eliminar los hilos
 			//TODO llamar a funcion para free
-			//free(gen_data);
+			free(gen_data);
 			return (1);
 		}
 	}

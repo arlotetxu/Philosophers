@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 17:47:14 by jflorido          #+#    #+#             */
-/*   Updated: 2023/08/07 17:25:04 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/08/16 20:05:31 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,20 @@ No
  * 		ft_init_philo --> inits.c
  * - Creada funcion para esperar el tiempo necesario para realizar las operaciones
  * 		ft_sleep --> utils.c
- * -Creada funcion que crea filosofo vigilante
+ * - Creada funcion que crea filosofo vigilante
  * 		ft_philo_watcher --> watcher.c
+ * - Creada funcion para las impresiones por pantalla del estado
+ * 		ft_print_msg --> utils.c
  *
  * =============== PENDING ====================
+
  * - Crear rutina
  * 		- 1/ Funcion comer. Reserva de tenedores. Logica para reservar (pares / impares).
+ * 				- Imprimir mensaje
+ * 				- Actualizar t_t_die
+ * 				- Actualizar nb_meals
+ * 				- Unlock de los tenedores
+
  * 		- 2/ Funcion para dormir. En combinacion con ft_sleep.
  * 		- 3/ Funcion para pensar. Solo mensaje??? No hay tiempo definido.
  * 		- Comprobacion de si filosofo esta muerto?? Hilo independiente
