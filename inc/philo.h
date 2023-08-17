@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:23:18 by jflorido          #+#    #+#             */
-/*   Updated: 2023/08/16 19:56:36 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/08/17 09:13:51 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ typedef struct s_general
 }					t_general;
 
 
-
 //Including functions
 
 //UTILS
@@ -77,7 +76,13 @@ int			ft_init_mutex(t_general *general);
 int			ft_init_philo(t_general *gen_data);
 
 //WATCHER
-void*			ft_philo_dead(void *arg);
-int				ft_philo_watcher(t_general *gen_data);
+void*		ft_philo_dead(void *arg);
+int			ft_philo_watcher(t_general *gen_data);
+
+//PHILO UTILS
+int			ft_take_fork(t_philo *philo);
+void		ft_eating(t_philo *philo);
+void		ft_sleeping(t_philo *philo);
+void		ft_thinking(t_philo *philo);
 
 #endif //PHILO_H
