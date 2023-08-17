@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 17:47:14 by jflorido          #+#    #+#             */
-/*   Updated: 2023/08/17 08:32:56 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/08/17 19:53:02 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,8 @@ No
  * 				- Actualizar t_t_die
  * 				- Actualizar nb_meals
  * 				- Unlock de los tenedores
-
  * 		- 2/ Funcion para dormir. En combinacion con ft_sleep.
  * 		- 3/ Funcion para pensar. Solo mensaje??? No hay tiempo definido.
- * 		- Comprobacion de si filosofo esta muerto?? Hilo independiente
  * - Crear funcion para lanzar los hilos de los philos
  * 		- Pasar como argumento la funcion que tiene que realizar. Rutina.
  *
@@ -83,6 +81,51 @@ No
 
 #include "../inc/philo.h"
 
+/*
+* Funcion para lanzar la rutina
+*/
+void	*ft_routine(void *arg)
+{
+	t_philo	*philo;
+
+	philo = (t_philo *) arg;
+	//pthread_mutex_lock(&philo->general->gen_mutex);
+	printf("Total philos: %d\n", philo->general->tot_philos);
+	printf("Inicio rutina philo [%d]\n", philo->philo_id);
+	//pthread_mutex_unlock(&philo->general->gen_mutex);
+	// ft_take_fork(philo);
+	// ft_eating(philo);
+	// ft_sleeping(philo);
+	// ft_thinking(philo);
+	return (0);
+}
+
+/*
+* Funcion para crear los hilos de los filosofos
+*/
+void	ft_create_threads(t_general *gen_data)
+{
+	int	i;
+
+	i = 0;
+	gen_data->st_time = ft_get_time();
+	printf("Llego a crear el tiempo de inicio: %d\n", gen_data->st_time);
+	while (i < gen_data->tot_philos)
+	{
+		pthread_create(&gen_data->philo[i].thread, NULL, ft_routine, (void *)&gen_data->philo[i]);
+		printf("Lanzado hilo [%d]\n", gen_data->philo[i].philo_id);
+		i++;
+	}
+	i = 0;
+	while (i < gen_data->tot_philos)
+	{
+		pthread_join(gen_data->philo[i].thread, NULL);
+		i++;
+	}
+	printf("Hilos lanzados!! \n");
+}
+
+
 int	main(int argc, char **argv)
 {
 	t_general	*gen_data;
@@ -90,12 +133,15 @@ int	main(int argc, char **argv)
     gen_data = malloc(sizeof(t_general)); //TODO Liberar
     if (!gen_data)
 		return (1);
+	printf("Genero gen_data\n");
 	if (argc == 5 || argc == 6)
     {
         if (ft_arg_is_nb(argv) == 0 && ft_arg_in_int(argv) == 0 && ft_initial_data_load(gen_data, argc, argv) == 0)
 		{
-			ft_get_time();
+			//ft_philo_watcher(gen_data);
+			ft_create_threads(gen_data);
 			//Meter los free() de los mallocs hechos en esta funcion en las funciones del archivo inits.c
+			//free(gen_data);
 			return (0);
 		}
             //ft_initial_data_load(argc, argv);

@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 18:13:22 by jflorido          #+#    #+#             */
-/*   Updated: 2023/08/17 09:22:06 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/08/17 19:10:36 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	ft_get_time(void)
 	if (gettimeofday(&tv, NULL) == 0)
 	{
 		get_time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
-		printf("Tiempo en milisec: %d\n", get_time);
+		//printf("Tiempo en milisec: %d\n", get_time);
 	}
 	return (get_time);
 }

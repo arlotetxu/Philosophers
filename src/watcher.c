@@ -6,15 +6,15 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 09:59:29 by jflorido          #+#    #+#             */
-/*   Updated: 2023/08/16 18:27:42 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/08/17 19:27:05 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
 /*
-* Comprueba si el el philo no ha comido y muere. Hay que ir actualizando el t_t_die
-* Cada vez que come. Esto sera:
+* Comprueba si el el philo no ha comido y muere. Hay que ir actualizando
+* el t_t_die Cada vez que come. Esto sera:
 * t_t_die = ft_get_time() - st_time + t_t_die
 * Esta sera la funcion que tiene que estar comprobando el philo_checker
 */
@@ -23,26 +23,30 @@ void*	ft_philo_dead(void *arg)
 	int			i;
 	t_general	*gen_data;
 
-	gen_data = (t_general*)arg;
-	i = -1;
-	while (++i < gen_data->tot_philos)
+	gen_data = (t_general *)arg;
+	i = 0;
+	while (i < gen_data->tot_philos)
+	{
 		if((ft_get_time() - gen_data->st_time) > gen_data->philo[i].t_t_die)
 		{
 			gen_data->is_dead = 1;
 			return ((void *)gen_data);
 		}
+		i++;
+	}
 	return ((void *)gen_data);
 }
 
 /*
 * Funcion que crea hilo adicional para comprobar si un filosofo ha muerto.
-* Si un filosofo muere, debe cambiar la variable de la estructura t_general->is_dead
-* a valor "1".
+* Si un filosofo muere, debe cambiar la variable de la estructura
+* t_general->is_dead a valor "1".
 */
 int	ft_philo_watcher(t_general *gen_data)
 {
 	pthread_t	watcher;
 
+	printf("Lanzado watcher!!\n");
 	if (pthread_create(&watcher, NULL, &ft_philo_dead, gen_data) != 0)
 	{
 		ft_error_msg("Error creating the watcher thread!,\n");
@@ -53,20 +57,17 @@ int	ft_philo_watcher(t_general *gen_data)
 		ft_error_msg("Error creating the watcher thread!,\n");
 		return (1);
 	}
+	printf("Llego a antes del while del watcher!!\n");
 	while (1)
 	{
-		// if (gen_data->is_dead == 0)
-		// {
-		// 	printf("Philo VIVO!!\n");
-		// }
 		if (gen_data->is_dead == 1)
 		{
-			//printf("Philo MUERTO!!\n");
 			ft_print_msg(gen_data->philo, "died");
 			//TODO LLamar a funcion para eliminar los hilos
 			//TODO llamar a funcion para free
-			free(gen_data);
+			//free(gen_data);
 			return (1);
 		}
 	}
+	return (0);
 }
