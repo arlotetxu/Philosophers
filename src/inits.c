@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 18:26:26 by jflorido          #+#    #+#             */
-/*   Updated: 2023/08/17 19:07:23 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/08/18 22:20:39 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	ft_init_philo(t_general *gen_data)
 		gen_data->philo[i].nb_meals = 0;
 		//continuar con datos
 		printf("Filosofo [%d] iniciados.\n", gen_data->philo[i].philo_id);
+		printf("Fork addresses for philosopher %d: l_fork=%p, r_fork=%p\n", i, gen_data->philo[i].l_fork, gen_data->philo[i].r_fork);
 	}
 //	 printf("Datos philo 0 --> id: %d\n", gen_data->philo[0].philo_id);
 //	 printf("Datos philo 0 --> t_t_die: %d\n", gen_data->philo[0].t_t_die);

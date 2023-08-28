@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 17:47:14 by jflorido          #+#    #+#             */
-/*   Updated: 2023/08/17 19:53:02 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/08/18 22:21:59 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,14 +89,11 @@ void	*ft_routine(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *) arg;
-	//pthread_mutex_lock(&philo->general->gen_mutex);
-	printf("Total philos: %d\n", philo->general->tot_philos);
-	printf("Inicio rutina philo [%d]\n", philo->philo_id);
-	//pthread_mutex_unlock(&philo->general->gen_mutex);
-	// ft_take_fork(philo);
-	// ft_eating(philo);
-	// ft_sleeping(philo);
-	// ft_thinking(philo);
+	printf("Llego a la funcion rutina\n");
+	ft_take_fork(philo);
+	ft_eating(philo);
+	ft_sleeping(philo);
+	ft_thinking(philo);
 	return (0);
 }
 
@@ -112,7 +109,7 @@ void	ft_create_threads(t_general *gen_data)
 	printf("Llego a crear el tiempo de inicio: %d\n", gen_data->st_time);
 	while (i < gen_data->tot_philos)
 	{
-		pthread_create(&gen_data->philo[i].thread, NULL, ft_routine, (void *)&gen_data->philo[i]);
+		pthread_create(&gen_data->philo[i].thread, NULL, &ft_routine, (void *)&gen_data->philo[i]);
 		printf("Lanzado hilo [%d]\n", gen_data->philo[i].philo_id);
 		i++;
 	}
