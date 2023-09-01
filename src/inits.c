@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 18:26:26 by jflorido          #+#    #+#             */
-/*   Updated: 2023/08/18 22:20:39 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/09/01 17:40:45 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,10 @@ int	ft_init_philo(t_general *gen_data)
 		gen_data->philo[i].l_fork = &gen_data->m_forks[i];
 		gen_data->philo[i].r_fork = &gen_data->m_forks[(i + 1) % gen_data->tot_philos];
 		gen_data->philo[i].nb_meals = 0;
+		gen_data->philo[i].general = gen_data;
 		//continuar con datos
-		printf("Filosofo [%d] iniciados.\n", gen_data->philo[i].philo_id);
-		printf("Fork addresses for philosopher %d: l_fork=%p, r_fork=%p\n", i, gen_data->philo[i].l_fork, gen_data->philo[i].r_fork);
+		//printf("Filosofo [%d] iniciados.\n", gen_data->philo[i].philo_id);
+		//printf("Fork addresses for philosopher %d: l_fork=%p, r_fork=%p\n", i + 1, gen_data->philo[i].l_fork, gen_data->philo[i].r_fork);
 	}
 //	 printf("Datos philo 0 --> id: %d\n", gen_data->philo[0].philo_id);
 //	 printf("Datos philo 0 --> t_t_die: %d\n", gen_data->philo[0].t_t_die);
@@ -67,10 +68,10 @@ int	ft_init_mutex(t_general *gen_data)
 	}
 	i = -1;
 	while (++i < gen_data->tot_philos)
-		pthread_mutex_init(&gen_data->m_forks[i], NULL);
+		pthread_mutex_init(&(gen_data->m_forks[i]), NULL);
 	//pthread_mutex_init(&gen_data->m_check_dead, NULL);
-	pthread_mutex_init(&gen_data->gen_mutex, NULL);
-	 printf("Mutex creados!!\n");
+	pthread_mutex_init(&(gen_data->gen_mutex), NULL);
+	printf("Mutex creados!!\n");
 	//Llamar a Inicializar filosofos
 	if (ft_init_philo(gen_data) == 1)
 	{

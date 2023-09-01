@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 18:13:22 by jflorido          #+#    #+#             */
-/*   Updated: 2023/08/17 19:10:36 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/09/01 17:49:07 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,11 @@ void	ft_error_msg(char *msg)
 */
 void	ft_print_msg(t_philo *philo, char *msg)
 {
-	pthread_mutex_lock(&philo->general->gen_mutex);
-	printf("%d %d %s", ft_get_time() - philo->general->st_time,
-		philo->philo_id, msg);
+	//printf("Llego a la funcion ft_print_msg - philo: %d\n -- %s", philo->philo_id, msg);
+	//printf("Total philos: %d\n", philo->general->tot_philos);
+	pthread_mutex_lock(&(philo->general->gen_mutex));
+	printf("%d %d %s - Die?: %d", ft_get_time() - philo->general->st_time,
+		philo->philo_id, msg, philo->general->is_dead);
 	pthread_mutex_unlock(&philo->general->gen_mutex);
 }
 

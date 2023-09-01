@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 11:18:03 by jflorido          #+#    #+#             */
-/*   Updated: 2023/08/17 09:14:37 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/09/01 17:47:08 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,44 +18,22 @@
 
 int	ft_take_fork(t_philo *philo)
 {
-	printf("Llego a la funcion ft_take_fork.\n");
-	printf("In ft_take_fork, philosopher %d: l_fork=%p, r_fork=%p\n", philo->philo_id, philo->l_fork, philo->r_fork);
+	// printf("Llego a la funcion ft_take_fork - philo: %d\n", philo->philo_id);
+	// printf("In ft_take_fork, philosopher %d: l_fork=%p, r_fork=%p\n", philo->philo_id, philo->l_fork, philo->r_fork);
 	if (philo->philo_id % 2 == 0)
-	{
-		printf("Creando mutex lock_0\n");
-		if (pthread_mutex_lock(philo->r_fork) != 0)
-		{
-			printf("Creando mutex unlock_0\n");
-			return (pthread_mutex_unlock(philo->r_fork), 1);
-		}
-	}
+		pthread_mutex_lock(philo->r_fork);
 	else
-	{
-		printf("Creando mutex lock_1\n");
-		if (pthread_mutex_lock(philo->l_fork) != 0)
-		{
-			printf("Creando mutex unlock_1\n");
-			return (pthread_mutex_unlock(philo->l_fork), 1);
-		}
-	}
+		pthread_mutex_lock(philo->l_fork);
 	ft_print_msg(philo, "has taken a fork.\n");
 	if (philo->philo_id % 2 == 0)
 	{
-		printf("Creando mutex lock_2\n");
 		if (pthread_mutex_lock(philo->l_fork) != 0)
-		{
-			printf("Creando mutex unlock_2\n");
 			return (pthread_mutex_unlock(philo->l_fork), 1);
-		}
 	}
 	else
 	{
-		printf("Creando mutex lock_3\n");
 		if (pthread_mutex_lock(philo->r_fork) != 0)
-		{
-			printf("Creando mutex unlock_3\n");
 			return (pthread_mutex_unlock(philo->r_fork), 1);
-		}
 	}
 	ft_print_msg(philo, "has taken a fork.\n");
 	return (0);

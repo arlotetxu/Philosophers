@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 09:59:29 by jflorido          #+#    #+#             */
-/*   Updated: 2023/08/17 19:27:05 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/09/01 17:50:51 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int	ft_philo_watcher(t_general *gen_data)
 		ft_error_msg("Error creating the watcher thread!,\n");
 		return (1);
 	}
-	printf("Llego a antes del while del watcher!!\n");
 	while (1)
 	{
 		if (gen_data->is_dead == 1)
