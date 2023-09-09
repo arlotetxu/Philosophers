@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 11:18:03 by jflorido          #+#    #+#             */
-/*   Updated: 2023/09/01 17:47:08 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/09/09 12:17:49 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 int	ft_take_fork(t_philo *philo)
 {
 	// printf("Llego a la funcion ft_take_fork - philo: %d\n", philo->philo_id);
-	// printf("In ft_take_fork, philosopher %d: l_fork=%p, r_fork=%p\n", philo->philo_id, philo->l_fork, philo->r_fork);
+	//printf("In ft_take_fork, philosopher %d: l_fork=%p, r_fork=%p\n", philo->philo_id, philo->l_fork, philo->r_fork);
 	if (philo->philo_id % 2 == 0)
 		pthread_mutex_lock(philo->r_fork);
 	else
@@ -28,12 +28,12 @@ int	ft_take_fork(t_philo *philo)
 	if (philo->philo_id % 2 == 0)
 	{
 		if (pthread_mutex_lock(philo->l_fork) != 0)
-			return (pthread_mutex_unlock(philo->l_fork), 1);
+			return (pthread_mutex_unlock(philo->r_fork), 1);
 	}
 	else
 	{
 		if (pthread_mutex_lock(philo->r_fork) != 0)
-			return (pthread_mutex_unlock(philo->r_fork), 1);
+			return (pthread_mutex_unlock(philo->l_fork), 1);
 	}
 	ft_print_msg(philo, "has taken a fork.\n");
 	return (0);
@@ -48,11 +48,14 @@ void	ft_eating(t_philo *philo)
 	ft_print_msg(philo, " is eating.\n");
 	ft_sleep(philo->t_t_eat);
 	pthread_mutex_lock(&philo->general->gen_mutex);
-	philo->t_t_die = ft_get_time() - philo->general->st_time
-		+ philo->general->t_t_die;
+	// philo->t_t_die = ft_get_time() - philo->general->st_time
+	// 	+ philo->general->t_t_die;
+	philo->t_t_die = ft_get_time() - philo->general->st_time + philo->general->t_t_die;
 	philo->nb_meals++;
 	pthread_mutex_unlock(&philo->general->gen_mutex);
+	ft_print_msg(philo, " has freed a fork.\n");
 	pthread_mutex_unlock(philo->l_fork);
+	ft_print_msg(philo, " has freed a fork.\n");
 	pthread_mutex_unlock(philo->r_fork);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 17:47:14 by jflorido          #+#    #+#             */
-/*   Updated: 2023/09/01 17:46:03 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/09/09 16:08:12 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,25 +58,30 @@ No
  * 		ft_init_philo --> inits.c
  * - Creada funcion para esperar el tiempo necesario para realizar las operaciones
  * 		ft_sleep --> utils.c
- * - Creada funcion que crea filosofo vigilante
+ * - Creada funcion que genera filosofo vigilante
  * 		ft_philo_watcher --> watcher.c
  * - Creada funcion para las impresiones por pantalla del estado
  * 		ft_print_msg --> utils.c
- *
- * =============== PENDING ====================
-
- * - Crear rutina
- * 		- 1/ Funcion comer. Reserva de tenedores. Logica para reservar (pares / impares).
+ *  - Creada rutina (usando mutex_lock para que los hilos salgan todos a la vez)
+ * 		ft_routine --> philo.c
+ * * 		- 1/ Funcion comer. Reserva de tenedores. Logica para reservar (pares / impares).
  * 				- Imprimir mensaje
  * 				- Actualizar t_t_die
  * 				- Actualizar nb_meals
  * 				- Unlock de los tenedores
  * 		- 2/ Funcion para dormir. En combinacion con ft_sleep.
  * 		- 3/ Funcion para pensar. Solo mensaje??? No hay tiempo definido.
- * - Crear funcion para lanzar los hilos de los philos
- * 		- Pasar como argumento la funcion que tiene que realizar. Rutina.
+ *  - Creada funcion para lanzar los hilos (usando mutex_lock para crear los hilos y que no se ejecute nada hasta
+ * 		que esten todos creados)
+ * 		ft_create_threads --> philo.c
  *
  *
+ * =============== PENDING ====================
+ *
+ *	- Funcion para salir una vez que un filosofo muere (ver watcher)
+	- Chequeo de si los filosofos han comido el numero de veces indicado en los argumentos
+	- Comprobación de problemas de memoria (leaks).
+	- Comprobación de las funciones usadas en el proyecto (ver comando shell notion)
  */
 
 #include "../inc/philo.h"
@@ -89,11 +94,15 @@ void	*ft_routine(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *) arg;
+	//crear mutex lock de la variable mutex de cada filosofo. Esto hace que se queden en espera
+	//todos los hilos hasta que se hace el unlock antes del join en la funcion main
+	//Aqui que es donde hay que inicializar el valor de st_time
+
+	pthread_mutex_lock(&philo->start);
+	philo->general->st_time = ft_get_time();
+	//printf("Starting time: %d\n", philo->general->st_time);
 	while (1)
 	{
-		//printf("Llego a la funcion rutina - philo: %d\n", philo->philo_id);
-		// if (philo->philo_id % 2 != 0)
-		// 	usleep(1000);
 		ft_take_fork(philo);
 		ft_eating(philo);
 		ft_sleeping(philo);
@@ -110,14 +119,20 @@ void	ft_create_threads(t_general *gen_data)
 	int	i;
 
 	i = 0;
-	gen_data->st_time = ft_get_time();
+	//gen_data->st_time = ft_get_time();
 	//printf("Llego a crear el tiempo de inicio: %d\n", gen_data->st_time);
 	while (i < gen_data->tot_philos)
 	{
+		//Bloquear el mutex start de cada filosofo
+		pthread_mutex_init(&(gen_data->philo[i].start), NULL);
+		pthread_mutex_lock(&gen_data->philo[i].start);
 		pthread_create(&gen_data->philo[i].thread, NULL, &ft_routine, (void *)&gen_data->philo[i]);
-		//printf("Lanzado hilo [%d]\n", gen_data->philo[i].philo_id);
 		i++;
 	}
+	//Crear while para desbloquear los mutex start de cada filosofo. primero impares y luego pares
+	//Meter esto en una funcion ya que de lo contrario me pasaré de lineas
+	ft_mutex_unlock(gen_data);
+	ft_philo_watcher(gen_data);
 	i = 0;
 	while (i < gen_data->tot_philos)
 	{
@@ -138,25 +153,17 @@ int	main(int argc, char **argv)
     {
         if (ft_arg_is_nb(argv) == 0 && ft_arg_in_int(argv) == 0 && ft_initial_data_load(gen_data, argc, argv) == 0)
 		{
-			ft_philo_watcher(gen_data);
 			ft_create_threads(gen_data);
+			//ft_philo_watcher(gen_data);
 			//Meter los free() de los mallocs hechos en esta funcion en las funciones del archivo inits.c
 			//free(gen_data);
 			return (0);
 		}
-            //ft_initial_data_load(argc, argv);
 		else
 		{
 			free(gen_data);
 			return (1);
 		}
-
-		//ft_initial_data_load(argc, argv);
-		//printf("Inicio sleep\n");
-		//ft_sleep(5000);
-		//printf("Fin sleep\n");
-		//printf("Todo Correcto. Continua ejecucion!!\n");
-
     }
     else
 	{

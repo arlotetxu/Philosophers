@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 09:59:29 by jflorido          #+#    #+#             */
-/*   Updated: 2023/09/01 17:50:51 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/09/09 16:00:32 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,20 @@ void*	ft_philo_dead(void *arg)
 
 	gen_data = (t_general *)arg;
 	i = 0;
-	while (i < gen_data->tot_philos)
+
+	while (1)
 	{
-		if((ft_get_time() - gen_data->st_time) > gen_data->philo[i].t_t_die)
+		while (i < gen_data->tot_philos)
 		{
-			gen_data->is_dead = 1;
-			return ((void *)gen_data);
+			//printf("Watching philo: %d\n", gen_data->philo[i].philo_id);
+			if((ft_get_time() - gen_data->st_time) > gen_data->philo[i].t_t_die)
+			{
+				gen_data->is_dead = 1;
+				return ((void *)gen_data);
+			}
+			i++;
 		}
-		i++;
+		i = 0;
 	}
 	return ((void *)gen_data);
 }
@@ -61,11 +67,13 @@ int	ft_philo_watcher(t_general *gen_data)
 	{
 		if (gen_data->is_dead == 1)
 		{
-			ft_print_msg(gen_data->philo, "died");
+			printf("Alguno ha muerto!!\n");
+			//ft_print_msg(gen_data->philo, "died");
 			//TODO LLamar a funcion para eliminar los hilos
 			//TODO llamar a funcion para free
-			//free(gen_data);
-			return (1);
+			free(gen_data);
+			exit(1);
+			//return (1);
 		}
 	}
 	return (0);

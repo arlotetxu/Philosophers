@@ -6,7 +6,7 @@
 #    By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/27 11:27:45 by jflorido          #+#    #+#              #
-#    Updated: 2023/08/07 11:47:55 by jflorido         ###   ########.fr        #
+#    Updated: 2023/09/09 13:52:42 by jflorido         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,8 +86,9 @@ INC = inc
 # Files
 SRC_FILES = philo \
 			utils \
+			utils_2 \
 			checks inits \
-			philo_utils \
+			philo_actions \
 			watcher
 #SRCS = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))

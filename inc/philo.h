@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:23:18 by jflorido          #+#    #+#             */
-/*   Updated: 2023/08/17 18:56:04 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/09/09 13:52:27 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_philo
 	int					t_t_sleep;
 	pthread_mutex_t		*l_fork;
 	pthread_mutex_t		*r_fork;
+	pthread_mutex_t		start;
 	pthread_t			thread;
 	int 				nb_meals;
 	int					st_time;
@@ -65,6 +66,9 @@ void		ft_print_msg(t_philo *philo, char *msg);
 long		ft_atoi_phi(char *nb);
 int			ft_get_time();
 void		ft_sleep(int m_sec);
+
+//UTILS_2
+void		ft_mutex_unlock(t_general *gen_data);
 
 //CHECKS
 int			ft_arg_is_nb(char **argv);
