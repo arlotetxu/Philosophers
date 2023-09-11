@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 17:47:14 by jflorido          #+#    #+#             */
-/*   Updated: 2023/09/09 16:08:12 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/09/11 16:59:26 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ No
  * =============== PENDING ====================
  *
  *	- Funcion para salir una vez que un filosofo muere (ver watcher)
-	- Chequeo de si los filosofos han comido el numero de veces indicado en los argumentos
-	- Comprobación de problemas de memoria (leaks).
-	- Comprobación de las funciones usadas en el proyecto (ver comando shell notion)
+ *	- Chequeo de si los filosofos han comido el numero de veces indicado en los argumentos
+ *	- Comprobación de problemas de memoria (leaks).
+ *	- Comprobación de las funciones usadas en el proyecto (ver comando shell notion)
  */
 
 #include "../inc/philo.h"
@@ -97,6 +97,7 @@ void	*ft_routine(void *arg)
 	//crear mutex lock de la variable mutex de cada filosofo. Esto hace que se queden en espera
 	//todos los hilos hasta que se hace el unlock antes del join en la funcion main
 	//Aqui que es donde hay que inicializar el valor de st_time
+
 
 	pthread_mutex_lock(&philo->start);
 	philo->general->st_time = ft_get_time();

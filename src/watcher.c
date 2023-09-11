@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 09:59:29 by jflorido          #+#    #+#             */
-/*   Updated: 2023/09/09 16:00:32 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/09/11 17:12:15 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	ft_philo_watcher(t_general *gen_data)
 	{
 		if (gen_data->is_dead == 1)
 		{
-			printf("Alguno ha muerto!!\n");
+			printf("Alguno ha muerto!!\n"); //TODO Que filosofo muere?
 			//ft_print_msg(gen_data->philo, "died");
 			//TODO LLamar a funcion para eliminar los hilos
 			//TODO llamar a funcion para free

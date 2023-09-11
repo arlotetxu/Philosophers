@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_utils.c                                      :+:      :+:    :+:   */
+/*   philo_actions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 11:18:03 by jflorido          #+#    #+#             */
-/*   Updated: 2023/09/09 12:17:49 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/09/11 17:03:56 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_take_fork(t_philo *philo)
 		pthread_mutex_lock(philo->r_fork);
 	else
 		pthread_mutex_lock(philo->l_fork);
-	ft_print_msg(philo, "has taken a fork.\n");
+	ft_print_msg(philo, " has taken a fork.\n");
 	if (philo->philo_id % 2 == 0)
 	{
 		if (pthread_mutex_lock(philo->l_fork) != 0)
@@ -35,7 +35,7 @@ int	ft_take_fork(t_philo *philo)
 		if (pthread_mutex_lock(philo->r_fork) != 0)
 			return (pthread_mutex_unlock(philo->l_fork), 1);
 	}
-	ft_print_msg(philo, "has taken a fork.\n");
+	ft_print_msg(philo, " has taken a fork.\n");
 	return (0);
 }
 

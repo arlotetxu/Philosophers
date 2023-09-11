@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 18:26:26 by jflorido          #+#    #+#             */
-/*   Updated: 2023/09/09 13:31:47 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/09/11 17:13:32 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int ft_initial_data_load(t_general *gen_data, int argc, char **argv)
     if (argc == 6)
         gen_data->number_meals = ft_atoi_phi(argv[5]);
     else
-        gen_data->number_meals = 0; //TODO comprobar si 0 es correcto y no interfiere con la logica del programa
+        gen_data->number_meals = 0;
     gen_data->is_dead = 0;
 	if (ft_init_mutex(gen_data) == 1)
 	{
