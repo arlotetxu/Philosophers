@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: jflorido <jflorido@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 17:47:14 by jflorido          #+#    #+#             */
-/*   Updated: 2023/09/11 16:59:26 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/09/15 16:37:34 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,13 @@ No
  * =============== PENDING ====================
  *
  *	- Funcion para salir una vez que un filosofo muere (ver watcher)
- *	- Chequeo de si los filosofos han comido el numero de veces indicado en los argumentos
+ *	- Funcion para gestionar 1 unico filosofo
+ *	- Chequeo de si los filosofos han comido el numero de veces indicado en los argumentos 
+ 		(OJO, que puede no haber argumento y tienes esta condicion en la ejecucion de la rutina. Por eso se inicializa a -1 cuando no hay argumento)
+		 crear una variable con el numero de veces que come cada filosofo e igualarla a 0
+		 cada vez que unn filosofo come, aumentar la variable.
+		 Cada vez que una variable de filosofo llega a 0, descontar 1 del parametro de la 
+		 	estructura general mediante el watcher
  *	- Comprobación de problemas de memoria (leaks).
  *	- Comprobación de las funciones usadas en el proyecto (ver comando shell notion)
  */
@@ -102,7 +108,7 @@ void	*ft_routine(void *arg)
 	pthread_mutex_lock(&philo->start);
 	philo->general->st_time = ft_get_time();
 	//printf("Starting time: %d\n", philo->general->st_time);
-	while (1)
+	while (1)//TODO la condicion debe ser que no ha muerto ningun y que no hemos alcanzado el numero de comidas
 	{
 		ft_take_fork(philo);
 		ft_eating(philo);

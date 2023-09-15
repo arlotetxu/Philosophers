@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_actions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: jflorido <jflorido@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 11:18:03 by jflorido          #+#    #+#             */
-/*   Updated: 2023/09/11 17:03:56 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/09/15 16:40:07 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ void	ft_eating(t_philo *philo)
 	// philo->t_t_die = ft_get_time() - philo->general->st_time
 	// 	+ philo->general->t_t_die;
 	philo->t_t_die = ft_get_time() - philo->general->st_time + philo->general->t_t_die;
-	philo->nb_meals++;
+	if (philo->general->number_meals != -1)
+		philo->nb_meals++;
 	pthread_mutex_unlock(&philo->general->gen_mutex);
 	ft_print_msg(philo, " has freed a fork.\n");
 	pthread_mutex_unlock(philo->l_fork);
