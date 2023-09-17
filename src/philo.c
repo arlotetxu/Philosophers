@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jflorido <jflorido@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 17:47:14 by jflorido          #+#    #+#             */
-/*   Updated: 2023/09/15 16:37:34 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/09/17 17:41:02 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ No
  		(OJO, que puede no haber argumento y tienes esta condicion en la ejecucion de la rutina. Por eso se inicializa a -1 cuando no hay argumento)
 		 crear una variable con el numero de veces que come cada filosofo e igualarla a 0
 		 cada vez que unn filosofo come, aumentar la variable.
-		 Cada vez que una variable de filosofo llega a 0, descontar 1 del parametro de la 
-		 	estructura general mediante el watcher
+		 Cada vez que una variable de filosofo llega a al numero de comidas, descontar 1 del parametro de la 
+		 	estructura general mediante el watcher y sacar al philosofo de la rutina
  *	- Comprobación de problemas de memoria (leaks).
  *	- Comprobación de las funciones usadas en el proyecto (ver comando shell notion)
  */
@@ -108,10 +108,13 @@ void	*ft_routine(void *arg)
 	pthread_mutex_lock(&philo->start);
 	philo->general->st_time = ft_get_time();
 	//printf("Starting time: %d\n", philo->general->st_time);
-	while (1)//TODO la condicion debe ser que no ha muerto ningun y que no hemos alcanzado el numero de comidas
+	//while (1)//TODO la condicion debe ser que no ha muerto ningun y que no hemos alcanzado el numero de comidas
+	while (philo->general->is_dead == 0)
 	{
 		ft_take_fork(philo);
 		ft_eating(philo);
+		if (philo->nb_meals == 0)
+			break;
 		ft_sleeping(philo);
 		ft_thinking(philo);
 	}
@@ -138,6 +141,7 @@ void	ft_create_threads(t_general *gen_data)
 	}
 	//Crear while para desbloquear los mutex start de cada filosofo. primero impares y luego pares
 	//Meter esto en una funcion ya que de lo contrario me pasaré de lineas
+	
 	ft_mutex_unlock(gen_data);
 	ft_philo_watcher(gen_data);
 	i = 0;
