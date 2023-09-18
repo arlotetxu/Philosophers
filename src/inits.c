@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 18:26:26 by jflorido          #+#    #+#             */
-/*   Updated: 2023/09/17 10:06:54 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/09/18 18:59:00 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_init_philo(t_general *gen_data)
 		gen_data->philo[i].r_fork = &gen_data->m_forks[(i + 1) % gen_data->tot_philos];
 		gen_data->philo[i].nb_meals = gen_data->number_meals;
 		gen_data->philo[i].general = gen_data;
-		printf("Filo [%d] meals: %d\n", gen_data->philo[i].philo_id, gen_data->philo[i].nb_meals);
+		//printf("Filo [%d] meals: %d\n", gen_data->philo[i].philo_id, gen_data->philo[i].nb_meals);
 	}
 		//inicializar mutex de cada filosofo. Llamar a funcion para la inicializacion y lock
 	return (0);

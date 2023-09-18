@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 09:59:29 by jflorido          #+#    #+#             */
-/*   Updated: 2023/09/17 17:21:41 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/09/18 19:17:00 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ void*	ft_philo_dead(void *arg)
 	{
 		while (i < gen_data->tot_philos)
 		{
-			//printf("Watching philo: %d\n", gen_data->philo[i].philo_id);
+			if (gen_data->philo[i].nb_meals == 0)
+				break; //DETACH???
 			if((ft_get_time() - gen_data->st_time) > gen_data->philo[i].t_t_die)
 			{
-				ft_print_msg(gen_data->philo, " died.\n");
-				printf("%d	%d	died_2.\n", ft_get_time() - gen_data->st_time,  gen_data->philo[i].philo_id);
+				//ft_print_msg(gen_data->philo, " died.\n");
+				printf("%d	%d	died.\n", ft_get_time() - gen_data->st_time,  gen_data->philo[i].philo_id);
 				gen_data->is_dead = 1;
 				return ((void *)gen_data);
 			}
