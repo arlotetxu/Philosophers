@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 09:59:29 by jflorido          #+#    #+#             */
-/*   Updated: 2023/09/19 16:41:15 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/09/19 19:54:48 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,10 @@ void*	ft_philo_dead(void *arg)
 	t_general	*gen_data;
 
 	gen_data = (t_general *)arg;
-	i = 0;
-
+	i = -1;
 	while (1)
 	{
-		while (i < gen_data->tot_philos)
+		while (++i < gen_data->tot_philos)
 		{
 			if (gen_data->philo[i].nb_meals == 0)
 			{
@@ -37,21 +36,15 @@ void*	ft_philo_dead(void *arg)
 			}
 			if (gen_data->number_meals == 0)
 				return (NULL);
-				//break; //DETACH???
 			if((ft_get_time() - gen_data->st_time) > gen_data->philo[i].t_t_die)
 			{
-				//ft_print_msg(gen_data->philo, " died.\n");
-				printf("%d	%d	died.\n", ft_get_time() - gen_data->st_time,  gen_data->philo[i].philo_id);
+				printf("%d		%d  died.\n", ft_get_time() - gen_data->st_time,  gen_data->philo[i].philo_id);
 				gen_data->is_dead = 1;
-				//return ((void *)gen_data);
 				return (NULL);
 			}
-			i++;
 		}
-		i = 0;
+		i = -1;
 	}
-	//return ((void *)gen_data);
-	return (NULL);
 }
 
 /*
@@ -63,7 +56,7 @@ int	ft_philo_watcher(t_general *gen_data)
 {
 	pthread_t	watcher;
 
-	printf("Lanzado watcher!!\n");
+	//printf("Lanzado watcher!!\n");
 	if (pthread_create(&watcher, NULL, &ft_philo_dead, gen_data) != 0)
 	{
 		ft_error_msg("Error creating the watcher thread!,\n");

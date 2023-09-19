@@ -44,7 +44,7 @@ int ft_arg_is_nb(char **argv)
     while (argv[i])
     {
         if (ft_atoi_phi(argv[i]) <= 0)
-            return (ft_error_msg("Error.\nArg <= 0\n"), 1);
+            return (ft_error_msg("Error.\nThere is an Arg <= 0\n"), 1);
         if (argv[i][0] == '\0')
             return (ft_error_msg("Error.\nEmpty argument.\n"), 1);
         j = 0;

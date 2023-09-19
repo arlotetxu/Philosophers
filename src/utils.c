@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 18:13:22 by jflorido          #+#    #+#             */
-/*   Updated: 2023/09/09 13:37:28 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/09/19 18:03:03 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_print_msg(t_philo *philo, char *msg)
 	pthread_mutex_lock(&(philo->general->gen_mutex));
 	//printear solo si variable gen_data->Is_Dead es 0
 	if (philo->general->is_dead == 0)
-		printf("Dead Status: %d -- %d	 %d %s",philo->general->is_dead ,ft_get_time() - philo->general->st_time,
+		printf("%d		%d %s",ft_get_time() - philo->general->st_time,
 			philo->philo_id, msg);
 	pthread_mutex_unlock(&philo->general->gen_mutex);
 }
