@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:23:18 by jflorido          #+#    #+#             */
-/*   Updated: 2023/09/17 17:36:31 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/09/20 18:29:24 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,8 @@ typedef struct s_general
 	int				t_t_eat;
 	int				t_t_sleep;
 	int				st_time;
-	int 			number_meals; //numero de veces que tiene que comer
+	int 			number_meals;
 	int 			is_dead;
-	//pthread_mutex_t	m_check_dead;
 	pthread_mutex_t gen_mutex;
 	pthread_mutex_t	*m_forks;
 	t_philo			*philo;
@@ -69,7 +68,7 @@ void		ft_sleep(int m_sec);
 
 //UTILS_2
 void		ft_mutex_unlock(t_general *gen_data);
-void		ft_print_philo_values(t_philo *philo);
+void		ft_mutex_destroy(t_general *gen_data);
 
 //CHECKS
 int			ft_arg_is_nb(char **argv);

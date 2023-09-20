@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 17:47:14 by jflorido          #+#    #+#             */
-/*   Updated: 2023/09/19 19:42:34 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/09/20 18:39:52 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ No
  *
  * #PARAMETERS
  * 		- void *arg --> this parameter will be converted in the philo array
- * 						later on. Needed to do by this way according to the 
+ * 						later on. Needed to do by this way according to the
  * 						functions to create the threads.
  *
  * #RETURN
@@ -125,10 +125,10 @@ void	*ft_routine(void *arg)
  *
  * #PARAMETERS
  * 		- t_general *gen_data--> a pointer to the general structure where
- * 					some data arguments will be stored. 
+ * 					some data arguments will be stored.
  *
  * #RETURN
- * 		- 
+ * 		-
  */
 void	ft_create_threads(t_general *gen_data)
 {
@@ -163,12 +163,7 @@ int	main(int argc, char **argv)
 	if (argc == 5 || argc == 6)
     {
         if (ft_arg_is_nb(argv) == 0 && ft_arg_in_int(argv) == 0 && ft_initial_data_load(gen_data, argc, argv) == 0)
-		{
 			ft_create_threads(gen_data);
-			//Meter los free() de los mallocs hechos en esta funcion en las funciones del archivo inits.c
-			//free(gen_data);
-			return (0);
-		}
 		else
 		{
 			free(gen_data);
@@ -180,6 +175,8 @@ int	main(int argc, char **argv)
 		free(gen_data);
 		return (ft_error_msg("Error.\nInvalid number of args\n"), 0);
 	}
+	free(gen_data->m_forks);
+	free(gen_data->philo);
 	free(gen_data);
 	return (0);
 }

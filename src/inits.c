@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 18:26:26 by jflorido          #+#    #+#             */
-/*   Updated: 2023/09/19 19:43:19 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/09/20 18:34:49 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,6 @@ int ft_initial_data_load(t_general *gen_data, int argc, char **argv)
         gen_data->number_meals = -1;
     gen_data->is_dead = 0;
 	if (ft_init_mutex(gen_data) == 1)
-	{
-		//free(gen_data);
 		return (1);
-	}
     return (0);
 }
