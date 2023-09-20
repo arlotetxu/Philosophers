@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:23:18 by jflorido          #+#    #+#             */
-/*   Updated: 2023/09/20 18:29:24 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/09/20 19:49:48 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,48 +14,47 @@
 # define PHILO_H
 
 //HEADERS
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <pthread.h>
-#include <limits.h>
-#include <sys/time.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <pthread.h>
+# include <limits.h>
+# include <sys/time.h>
 
 //DEFINES
-# define max_int 2147483647
-# define min_int -2147483648
+# define MAX_INT 2147483647
+# define MIN_INT -2147483648
 
 //STRUCTS
 
 typedef struct s_philo
 {
 	int					philo_id;
-    int					t_t_die;
+	int					t_t_die;
 	int					t_t_eat;
 	int					t_t_sleep;
 	pthread_mutex_t		*l_fork;
 	pthread_mutex_t		*r_fork;
 	pthread_mutex_t		start;
 	pthread_t			thread;
-	int 				nb_meals;
+	int					nb_meals;
 	int					st_time;
-	struct	s_general	*general;
+	struct s_general	*general;
 }						t_philo;
 
 typedef struct s_general
 {
-	int 			tot_philos;
+	int				tot_philos;
 	int				t_t_die;
 	int				t_t_eat;
 	int				t_t_sleep;
 	int				st_time;
-	int 			number_meals;
-	int 			is_dead;
-	pthread_mutex_t gen_mutex;
+	int				number_meals;
+	int				is_dead;
+	pthread_mutex_t	gen_mutex;
 	pthread_mutex_t	*m_forks;
 	t_philo			*philo;
 }					t_general;
-
 
 //Including functions
 
@@ -63,7 +62,7 @@ typedef struct s_general
 void		ft_error_msg(char *msg);
 void		ft_print_msg(t_philo *philo, char *msg);
 long		ft_atoi_phi(char *nb);
-int			ft_get_time();
+int			ft_get_time(void);
 void		ft_sleep(int m_sec);
 
 //UTILS_2
@@ -80,7 +79,8 @@ int			ft_init_mutex(t_general *general);
 int			ft_init_philo(t_general *gen_data);
 
 //WATCHER
-void*		ft_philo_dead(void *arg);
+void		ft_dead(int t_time, int philo_id, t_general *gen_data);
+void		*ft_philo_dead(void *arg);
 int			ft_philo_watcher(t_general *gen_data);
 
 //PHILO UTILS

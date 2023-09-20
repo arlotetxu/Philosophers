@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 17:47:14 by jflorido          #+#    #+#             */
-/*   Updated: 2023/09/20 18:39:52 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/09/20 19:53:13 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,14 @@ No
  * 		que esten todos creados)
  * 		ft_create_threads --> philo.c
  *  - Chequeo de si los filosofos han comido el numero de veces indicado en los argumentos (ver watcher)
- *
+ * 	- Liberados los malloc al final de la ejecución. Sin problemas con Valgrind
+ * 	- Norminette OK
  *
  * =============== PENDING ====================
  *
- *	- Funcion para salir una vez que un filosofo muere (ver watcher)
  *	- Funcion para gestionar 1 unico filosofo
- *	- Comprobación de problemas de memoria (leaks).
  *	- Comprobación de las funciones usadas en el proyecto (ver comando shell notion)
+	- Comentarios a las funciones
  */
 
 #include "../inc/philo.h"
@@ -107,12 +107,13 @@ void	*ft_routine(void *arg)
 	philo = (t_philo *) arg;
 	pthread_mutex_lock(&philo->start);
 	philo->general->st_time = ft_get_time();
-	while (philo->general->is_dead == 0 && (philo->general->number_meals == -1 || philo->general->number_meals >= 0))
+	while (philo->general->is_dead == 0 && (philo->general->number_meals == -1
+			|| philo->general->number_meals >= 0))
 	{
 		ft_take_fork(philo);
 		ft_eating(philo);
 		if (philo->nb_meals == 0)
-			break;
+			break ;
 		ft_sleeping(philo);
 		ft_thinking(philo);
 	}
@@ -139,7 +140,8 @@ void	ft_create_threads(t_general *gen_data)
 	{
 		pthread_mutex_init(&(gen_data->philo[i].start), NULL);
 		pthread_mutex_lock(&gen_data->philo[i].start);
-		pthread_create(&gen_data->philo[i].thread, NULL, &ft_routine, (void *)&gen_data->philo[i]);
+		pthread_create(&gen_data->philo[i].thread, NULL,
+			&ft_routine, (void *)&gen_data->philo[i]);
 		i++;
 	}
 	ft_mutex_unlock(gen_data);
@@ -152,25 +154,24 @@ void	ft_create_threads(t_general *gen_data)
 	}
 }
 
-
 int	main(int argc, char **argv)
 {
 	t_general	*gen_data;
 
-    gen_data = malloc(sizeof(t_general)); //TODO Liberar
-    if (!gen_data)
+	gen_data = malloc(sizeof(t_general));
+	if (!gen_data)
 		return (1);
 	if (argc == 5 || argc == 6)
-    {
-        if (ft_arg_is_nb(argv) == 0 && ft_arg_in_int(argv) == 0 && ft_initial_data_load(gen_data, argc, argv) == 0)
+	{
+		if (ft_arg_is_nb(argv) == 0 && ft_arg_in_int(argv) == 0 && ft_initial_data_load(gen_data, argc, argv) == 0)
 			ft_create_threads(gen_data);
 		else
 		{
 			free(gen_data);
 			return (1);
 		}
-    }
-    else
+	}
+	else
 	{
 		free(gen_data);
 		return (ft_error_msg("Error.\nInvalid number of args\n"), 0);

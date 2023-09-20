@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 18:13:22 by jflorido          #+#    #+#             */
-/*   Updated: 2023/09/19 18:03:03 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/09/20 19:33:28 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,8 @@ void	ft_error_msg(char *msg)
 void	ft_print_msg(t_philo *philo, char *msg)
 {
 	pthread_mutex_lock(&(philo->general->gen_mutex));
-	//printear solo si variable gen_data->Is_Dead es 0
 	if (philo->general->is_dead == 0)
-		printf("%d		%d %s",ft_get_time() - philo->general->st_time,
+		printf ("%d		%d %s", ft_get_time() - philo->general->st_time,
 			philo->philo_id, msg);
 	pthread_mutex_unlock(&philo->general->gen_mutex);
 }
@@ -76,7 +75,6 @@ int	ft_get_time(void)
 	if (gettimeofday(&tv, NULL) == 0)
 	{
 		get_time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
-		//printf("Tiempo en milisec: %d\n", get_time);
 	}
 	return (get_time);
 }
