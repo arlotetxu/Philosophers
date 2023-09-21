@@ -6,25 +6,40 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 18:13:22 by jflorido          #+#    #+#             */
-/*   Updated: 2023/09/20 19:33:28 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/09/21 17:06:12 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
 /*
-* 1
-* Function to show the error messages
-*/
+ * #FT_ERROR_MSG
+ * 		Function to print messages, specially error messages
+ *
+ * #PARAMETERS
+ * 		-*msg -> message to be printed.
+ *
+ * #RETURN
+ * 		-
+ */
+
 void	ft_error_msg(char *msg)
 {
 	printf("\x1b[31m" "%s" "\x1b[0m", msg);
 }
 
 /*
-* 2
-* Function to print the philo actions
-*/
+ * #FT_PRINT_MSG
+ * 		Function to print the special messages with the thread actions
+ *
+ * #PARAMETERS
+ * 		- *philo -> struct with philosophes information.
+ * 		- *msg -> message to be printed
+ *
+ * #RETURN
+ * 		-
+ */
+
 void	ft_print_msg(t_philo *philo, char *msg)
 {
 	pthread_mutex_lock(&(philo->general->gen_mutex));
@@ -35,9 +50,16 @@ void	ft_print_msg(t_philo *philo, char *msg)
 }
 
 /*
-* 3
-* ATOI
-*/
+ * #FT_ATOI_PHI
+ * 		Function to convert a string in a int data type
+ *
+ * #PARAMETERS
+ * 		- *nb --> string to be converted
+ *
+ * #RETURN
+ * 		- t(result * sign) -> he number as int data type
+ */
+
 long	ft_atoi_phi(char *nb)
 {
 	int			i;
@@ -62,9 +84,15 @@ long	ft_atoi_phi(char *nb)
 }
 
 /*
-* 4
-* Obtener la fecha
-*/
+ * #FT_GET_TIME
+ * 		Function that gets the current date_time in milisecons
+ *
+ * #PARAMETERS
+ * 		-
+ *
+ * #RETURN
+ * 		- get_time -> the current date_time in milisecons.
+ */
 
 int	ft_get_time(void)
 {
@@ -80,9 +108,15 @@ int	ft_get_time(void)
 }
 
 /*
-5
-* Funcion sleep para mantenerse haciendo una accion
-*/
+ * #FT_SLEEP
+ * 		Function to sleep the execution for a period of X milisecods
+ *
+ * #PARAMETERS
+ * 		- m_sec --> number of miliseconds to sleep the execution
+ *
+ * #RETURN
+ * 		-
+ */
 
 void	ft_sleep(int m_sec)
 {

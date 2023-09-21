@@ -6,15 +6,22 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 13:43:19 by jflorido          #+#    #+#             */
-/*   Updated: 2023/09/20 18:41:50 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/09/21 17:07:35 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
 /*
-Funcion que desbloquea a los hilos para su lanzamiento en la funcion routine
-*/
+ * #FT_MUTEX_UNLOCK
+ * 		Function to unblock the threads when launching them
+ *
+ * #PARAMETERS
+ * 		- *gen_data -> Pointer to the general struct.
+ *
+ * #RETURN
+ * 		-
+ */
 void	ft_mutex_unlock(t_general *gen_data)
 {
 	int	i;

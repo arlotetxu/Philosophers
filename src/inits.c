@@ -6,15 +6,23 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 18:26:26 by jflorido          #+#    #+#             */
-/*   Updated: 2023/09/20 19:27:44 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/09/21 16:50:19 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
 /*
-* Inicializar cada filosofo con sus datos
-*/
+ * #FT_INIT_PHILO
+ * 		initializes all the info for all the philosophes (threads).
+ *
+ * #PARAMETERS
+ * 		- *gen_data -> Pointer to the general struct.
+ *
+ * #RETURN
+ * 		- 0 when the function finishes properly.
+ * 		- 1 if the malloc fails.
+ */
 int	ft_init_philo(t_general *gen_data)
 {
 	int	i;
@@ -42,8 +50,17 @@ int	ft_init_philo(t_general *gen_data)
 }
 
 /*
-* Inicializar los mutex de los tenedores y el mutex para el chequeo de muerte
-*/
+ * #FT_INIT_MUTEX
+ * 		initializes all the mutex needed to run the threads properly
+ * 		Launches the function ft_init_philo.
+ *
+ * #PARAMETERS
+ * 		- *gen_data -> Pointer to the general struct.
+ *
+ * #RETURN
+ * 		- 0 when the function finishes properly.
+ * 		- 1 if the function ft_init_philo return an error.
+ */
 
 int	ft_init_mutex(t_general *gen_data)
 {
@@ -68,8 +85,20 @@ int	ft_init_mutex(t_general *gen_data)
 }
 
 /*
-* Carga de datos inicial
-*/
+ * #FT_INITIAL_DATA_LOAD
+ * 		save all the arguments values in the general struct.
+ * 		Launch the ft_init_mutex to initialize all the needed mutex.
+ *
+ * #PARAMETERS
+ * 		- *gen_data -> Pointer to the general struct.
+ * 		- argc -> number of parameters introduced by the user
+ * 		- **argv -> Array with the value of the parameters.
+ *
+ * #RETURN
+ * 		- 0 when the function finishes properly.
+ * 		- 1 if the function ft_init_mutex return an error.
+ */
+
 int	ft_initial_data_load(t_general *gen_data, int argc, char **argv)
 {
 	gen_data->tot_philos = ft_atoi_phi(argv[1]);

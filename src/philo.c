@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 17:47:14 by jflorido          #+#    #+#             */
-/*   Updated: 2023/09/20 19:53:13 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/09/21 16:47:19 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ No
  *	- Funcion para gestionar 1 unico filosofo
  *	- Comprobación de las funciones usadas en el proyecto (ver comando shell notion)
 	- Comentarios a las funciones
+	- Quitar el mensaje cuando se liberan los tenedores
  */
 
 #include "../inc/philo.h"
