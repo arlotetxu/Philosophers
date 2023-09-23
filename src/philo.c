@@ -6,7 +6,7 @@
 /*   By: jflorido <jflorido@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 17:47:14 by jflorido          #+#    #+#             */
-/*   Updated: 2023/09/22 16:39:19 by jflorido         ###   ########.fr       */
+/*   Updated: 2023/09/23 10:05:09 by jflorido         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,8 @@ int	main(int argc, char **argv)
 		return (1);
 	if (argc == 5 || argc == 6)
 	{
-		if (ft_arg_is_nb(argv) == 0 && ft_arg_in_int(argv) == 0 && ft_initial_data_load(gen_data, argc, argv) == 0)
+		if (ft_arg_is_nb(argv) == 0 && ft_arg_in_int(argv) == 0
+			&& ft_initial_data_load(gen_data, argc, argv) == 0)
 			ft_create_threads(gen_data);
 		else
 		{
